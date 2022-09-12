@@ -52,3 +52,4 @@ pair<long long, long long> getMinMax(long long a[], int n) {
     return ans;
 }
 
+
