@@ -44,9 +44,8 @@ long long maxSubarraySum(int arr[], int n){
          int sum=arr[0];
         int maxSum=sum;
         for(int i=1;i<n;i++){
-            sum+=arr[i];
-            sum=max(sum,arr[i]);
             
+            sum=max(sum+arr[i],arr[i]);
             maxSum=max(sum,maxSum);
         }
         return maxSum;
