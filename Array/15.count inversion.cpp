@@ -44,3 +44,78 @@ Constraints:
 
 
 */
+ public:
+    long long int merge(long long  arr[],long long  l,long long  m,long long r)
+    {
+         // Your code here
+         
+        long long  n1=m-l+1;
+         long long  n2=r-m;
+        long long  left[n1];
+        long long right[n2];
+        
+        for(int i=0;i<n1;i++)
+            left[i]=arr[l+i];
+        for(int i=0;i<n2;i++){
+            right[i]=arr[m+1+i];
+        }
+        
+        int c=l,i=0,j=0;
+        long long int count=0;
+        while(i<n1 && j< n2){
+            if(left[i]<=right[j]){
+                arr[c++]=left[i++];
+                
+            }
+            else
+            {
+                arr[c++]=right[j++];
+                count=count+n1-i;
+                
+            }
+        }
+      
+        while(i<n1)
+            arr[c++]=left[i++];
+        while(j<n2)
+            arr[c++]=right[j++];
+        return count;
+         
+    }
+    public:
+    long long int mergeSort(long long arr[],long long l,long long r)
+    {
+        //code here
+        long long int count=0;
+        if(l<r){
+            
+            long long  mid=(l+r)/2;
+            count+=mergeSort(arr,l,mid);
+            count+=mergeSort(arr,mid+1,r);
+            count+=merge(arr,l,mid,r);
+        }
+        
+            return count;
+    }
+    
+  public:
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    // Function to count inversions in the array.
+    long long int inversionCount(long long arr[], long long N)
+    {
+        // Your Code Here
+        //brute force
+        /*long long int ans=0;
+        for(int i=0;i<N;i++){
+            for(int j=i+1;j<N;j++)
+                if(arr[i]>arr[j])
+                    ans++;
+        }
+        return ans;*/
+        
+        
+        long long int ans=mergeSort(arr,0,N-1);
+        
+        
+    }
